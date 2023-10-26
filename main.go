@@ -6,10 +6,8 @@ import (
 
 func main() {
 	app := fiber.New()
-	app.Get("/:value", func(c *fiber.Ctx) error {
-		return c.SendString(c.Params("value"))
-
-	})
+	app.Get("/user", userRead)
+	//return c.SendString(c.Params("value"))
 	app.Listen(":8080")
 
 }
