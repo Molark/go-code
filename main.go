@@ -1,10 +1,15 @@
 package main
 
-import "net/http"
+import (
+	"github.com/gofiber/fiber/v2"
+)
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("ok"))
+	app := fiber.New()
+	app.Get("/:value", func(c *fiber.Ctx) error {
+		return c.SendString(c.Params("value"))
+
 	})
-	http.ListenAndServe(":8080", nil)
+	app.Listen(":8080")
+
 }
